@@ -2,15 +2,15 @@
 <html>
     <body>
         <h1>Cambio de imágenes con JavaScript</h1>
-        <img id="myFPImage" onclick="campiaPic()" src="C:\Users\usuario\Desktop\Desarrollo Entorno Cliente\1er Trimestre\Tema 1\charizard.png" width="100" height="180">
+        <img id="myFPImage" onclick="cambiaPic()" src="charizard.png" width="100" height="180">
         <p>Haz click sobre las letras para cambiarlas.</p>
         <script>
             function cambiaPic(){
                 var image=document.getElementById('myFPImage');
-                if(image.src.match("charizard.png")){
-                    image.src= "shiny.png";
+                if(image.src.match("shiny")){
+                    image.src= "charizard.png";
                 }else{
-                    image.src="charizard.png";
+                    image.src="shiny.png";
                 }
             }
         </script>
