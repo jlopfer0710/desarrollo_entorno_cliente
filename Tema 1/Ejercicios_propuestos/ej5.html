@@ -1,0 +1,32 @@
+<!--Diseña una web con tres botones para que al pulsarlos se genere un mensaje de bienvenida en ruso, español,inglés en la misma página-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <p id="idioma">Buenos días</p>
+    <button type="button" onclick="rus()">En ruso</button>
+    <button type="button" onclick="sp()">En español</button>
+    <button type="button" onclick="eng()">En inglés</button>
+    <script>
+        function rus(){
+            var x=document.getElementById("idioma");
+            x.innerHTML="доброе утро";
+            x.style.color="blue";
+        }
+        function eng(){
+            var x=document.getElementById("idioma");
+            x.innerHTML="Good Morning";
+            x.style.color="red";
+        }
+        function sp(){
+            var x=document.getElementById("idioma");
+            x.innerHTML="Buenos Días";
+            x.style.color="green";
+        }
+    </script>
+</body>
+</html>
