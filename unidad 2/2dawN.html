@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 14</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Ejercicio 14</h2>
+    <script>
+        var num=0;
+        var cont=0;
+        var suma=0;
+        while(num!=9999){
+            num=prompt("Introduce un número distinto de: 9999");
+            num=parseInt(num);
+            if(num!=9999){
+                cont++;
+                suma+=num;
+            }
+        }
+        alert("Números introducidos: "+cont+" suma de los números introducidos: "+suma);
+    </script>
+</body>
+</html>
