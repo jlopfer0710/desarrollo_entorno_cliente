@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 11</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Ejercicio 11</h2>
+    <script>
+        var farenheit,celsius; //en vez de ; había ,
+        var s="";
+        for(i=-2;i<=12;i++) //en vez de un ; había :
+        {
+            celsius=10*i;
+            farenheit=32+(celsius*9)/5;
+            s=s+"C= "+celsius+" F= "+farenheit+"\n";
+            if (celsius==0) s=s+"Punto congelación del Agua\n";
+            if (celsius==100) s=s+"Punto de ebullición del Agua\n";
+        }
+        alert(s); //le faltaba el parentesis final
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 9</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Ejercicio 9</h2>
+    <script>
+        function base2(numero){
+            return numero.toString(2);
+        }
+        var n=prompt("Introduce un número");
+        var n2=parseInt(n,8);
+        alert("El número: "+n+" en base 10 es: "+n2);
+        alert("Ahora vamos a pasar el número anterior a base 2");
+        alert("El número: "+n2+" en base 10 es: "+base2(n2));
+    </script>
+</body>
+</html>

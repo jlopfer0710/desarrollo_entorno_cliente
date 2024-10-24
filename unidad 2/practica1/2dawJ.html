@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Ejercicio 10</h2>
+    <script>
+        function cambiar_base(numero,base){
+            return numero.toString(base).toUpperCase();
+        }
+        var num=prompt("Introduzca un número");
+        num=parseInt(num);
+        var base=prompt("introduzca la base");
+        base=parseInt(base);
+        alert("El número: "+num+" en la base: "+base+" es: "+cambiar_base(num,base));
+    </script>
+</body>
+</html>
