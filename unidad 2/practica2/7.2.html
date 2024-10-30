@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7.2</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Ejercicio 7.2</h2>
+    <script>
+        /*-Se ingresan tres notas de un alumno, si el promedio es mayor o igual
+        a 4 mostrar un mensaje 'regular', sino 'reprobado'.*/
+        var num1=parseInt(prompt("Introduce la primera nota"));
+        var num2=parseInt(prompt("Introduce la segunda nota"));
+        var num3=parseInt(prompt("Introduc la tercera nota"));
+        var suma=num1+num2+num3;
+        var promedio=suma/3;
+        if(promedio>=4){
+            alert("regular");
+        }else{
+            alert("reprobado");
+        }
+    </script>
+</body>
+</html>

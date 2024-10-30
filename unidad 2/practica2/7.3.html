@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7.3</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Ejercicio 7.3</h2>
+    <script>
+        /*- Se ingresa por teclado un número positivo de uno o dos dígitos
+        (1..99) mostrar un mensaje indicando si el número tiene uno o dos dígitos
+        (recordar de convertir a entero con parseInt para preguntar
+        posteriormente por una variable entera). Tener en cuenta qué condición
+        debe cumplirse para tener dos dígitos, un número*/
+        var num=parseInt(prompt("Introduce el primer número"));
+        if(num>=1 && num<10){
+            alert("El número tiene un dígito");
+        }else if(num<100){
+            alert("El número tiene dos dígitos");
+        }
+    </script>
+</body>
+</html>

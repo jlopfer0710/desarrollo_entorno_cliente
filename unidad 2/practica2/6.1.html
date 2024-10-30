@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6.1</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Ejercicio 6.1</h2>
+    <script>
+        /*- Se ingresan tres notas de un alumno, si el promedio es mayor o igual a siete mostrar el mensaje 'Promocionado'. Tener en cuenta que para
+        obtener el promedio debemos operar suma=nota1+nota2+nota3; y luego
+        hacer promedio=suma/3;
+        Cuando cargamos una nota y queremos convertir inmediatamente el valor
+        ingresado a entero podemos hacer:
+        nota1=prompt('Ingrese primer nota:','');
+        nota1=parseInt(nota1);
+        */
+        var nota1=prompt("Introduce la primera nota");
+        nota1=parseInt(nota1);
+        var nota2=prompt("Introduce la segunda nota");
+        nota2=parseInt(nota2);
+        var nota3=prompt("Introduce la tercera nota");
+        nota3=parseInt(nota3);
+        var suma=nota1+nota2+nota3;
+        var promedio=(suma)/3;
+        if(promedio>=7){
+            alert("Promocionado");
+        }else{
+            alert("No promocionado");
+        }
+    </script>
+</body>
+</html>
