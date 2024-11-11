@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronómetro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+         #div{
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      background-color: rgb(142, 202, 243);
+      margin-left: 790px;
+      border-radius: 3%;
+    }
+    #boton{
+        height: 60px;
+        width: 200px;
+        font-size: 20px;
+        border-radius: 4%;
+        border: none;
+        background-color: rgb(190, 190, 190);
+    }
+    ul{
+        list-style: none;
+        margin-left: 675px;
+        margin-top: 50px;
+    }
+    li{
+        display: inline;
+        margin-right: 50px;
+    }
+    </style>
+</head>
+<body>
+    <div id="div">00:00:00</div>
+    <ul>
+        <li> <button id="boton" onclick="cargar()"><i id="i" style="margin-right: 10px;" class="fa-solid fa-play"></i><span id="texto">Iniciar</span></button></li>
+        <li><button id="boton" onclick="reiniciar()" ><i style="margin-right: 10px;" class="fa-solid fa-stop"></i> Reiniciar</button></li>
+    </ul>
+    <script>
+        //Basándote en el código expuesto por el profesor realiza tu propio cronómetro
+        var elCrono;
+        var horas=0,minutos=0,segundos=0;
+        var activo=0;
+            function crono(){
+                segundos++;
+                if(segundos==60){
+                    segundos=0;
+                    minutos++;
+                }
+                if(minutos==60){
+                    minutos=0;
+                    horas++;
+                }
+                var horasTexto= horas < 10 ? '0'+ horas:horas;
+                var minutosTexto = minutos < 10 ? '0' + minutos : minutos;
+                var segundosTexto = segundos < 10 ? '0' + segundos : segundos;
+                document.getElementById('div').innerHTML = horasTexto + ':' + minutosTexto + ':' + segundosTexto;
+
+            }
+            
+        function cargar(){
+            var texto=document.getElementById("texto");
+            var i=document.getElementById("i");
+            if(activo==0){
+                elCrono=setInterval(crono,1000);
+               
+                if(i.classList.contains("fa-play")){
+                    i.classList.remove("fa-play");
+                    i.classList.add("fa-pause");
+                    texto.innerText="Parar";
+                }
+                activo=1;
+            }else{
+                clearInterval(elCrono);
+                if(i.classList.contains("fa-pause")){
+                    i.classList.remove("fa-pause");
+                    i.classList.add("fa-play");
+                    texto.innerText="Iniciar";
+                }
+                activo=0;
+            }
+        }
+        function reiniciar(){
+            clearInterval(elCrono);
+            horas=0;
+            minutos=0;
+            segundos=0;
+            document.getElementById('div').innerHTML="00:00:00";
+            i.classList.add("fa-play")
+            activo=0;
+        }
+    </script>
+</body>
+</html>

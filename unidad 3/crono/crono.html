@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reloj</title>
+<style>
+  
+    #div{
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      background-color: rgb(142, 202, 243);
+      margin-left: 790px;
+      border-radius: 3%;
+    }
+    #boton{
+      margin-left: 835px;
+      height: 60px;
+      width: 200px;
+      font-size: 20px;
+      margin-top: 50px;
+      border-radius: 4%;
+      border: none;
+      background-color: rgb(190, 190, 190);
+    }
+</style>
+</head>
+<body>
+<div id="div" ></div>
+<button id="boton" onclick="cargar()">Cronometro</button>
+<script>
+function crono(){
+var elCrono;
+var miFecha = new Date();
+var horas = miFecha.getHours();
+var minutos = miFecha.getMinutes();
+var segundos = miFecha.getSeconds();
+if (horas > 12){
+  ampm='pm';
+  horas-=12;
+}else{
+  ampm='am';
+}
+if (horas<10){horas='0'+horas;}
+if (minutos<10){minutos='0'+minutos;}
+if (segundos<10){segundos='0'+segundos;}
+var texto = document.getElementById('div');
+var boton=document.getElementById("boton");
+boton.innerText="Parar";
+texto.innerHTML=horas+':'+minutos+':'+segundos+' '+ampm;
+}
+var activo=0;
+function cargar(){
+    if(activo==0){
+        elCrono = setInterval(crono,1000);
+        activo=1;
+    }else if(activo==1){
+        elCrono= clearInterval(elCrono);
+        activo=0;
+    }
+}
+
+</script>
+</body>
+</html>
