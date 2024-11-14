@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 11</title>
+</head>
+<body style="justify-content: center;display: flex;">
+    <h1 style="text-align: center;">Ejercicio 11</h1>
+    <button style="margin-top: 100px; margin-left: -120px;"  onclick="abrirVentana()">Abrir ventana</button>
+    <script>
+        function abrirVentana(){
+            const ancho=window.screen.width;
+            const alto=window.screen.height/2;
+            window.open("","",`width=${ancho},height=${alto}`);
+        }
+    </script>
+</body>
+</html>

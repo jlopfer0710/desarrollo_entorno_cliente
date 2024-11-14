@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Ejercicio 1</h1>
+        <div style="justify-content: center;display: flex;font-size: 50px;" id="div"></div>
+        <script>
+            var fecha = new Date();
+            var mes = fecha.getMonth() + 1;
+            var div = document.getElementById("div");
+            function devolvermes(mes) {
+                switch (mes) {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        div.innerHTML = "Nos encontramos en el 1er cuatrimestre";
+                        break;
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                        div.innerHTML = "Nos encontramo en el 2do cuatrimestre";
+                        break;
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                        div.innerHTML= "Nos encontramos en el 3er cuatrimestre";
+                        break;
+                }
+            }
+            devolvermes(mes);
+        </script>
+</body>
+</html>

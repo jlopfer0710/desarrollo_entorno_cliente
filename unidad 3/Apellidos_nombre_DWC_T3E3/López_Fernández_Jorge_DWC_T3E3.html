@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucesión de Fibonacci</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Sucesión de Fibonacci</h1>
+    <div id="div" style="display: flex;align-items: center;justify-content: center;"></div>
+    <script>
+        var n=parseInt(prompt("Introduce el número de dígitos que quieres que se muestre"));
+        var div=document.getElementById("div");
+        var res="";
+        function fibonacci(n){
+            if(n<=1){
+                return n;
+            }else{
+                return fibonacci(n-1)+fibonacci(n-2);
+            }
+        }
+        for(var i=0;i<n;i++){
+            res+=fibonacci(i)+" ";
+        }
+        div.innerHTML=res;
+    </script>
+</body>
+</html>

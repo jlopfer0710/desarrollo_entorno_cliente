@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Ejercicio 7</h1>
+    <script>
+        var frase=prompt("Introduce la frase");
+        frase=frase.toLowerCase().replace(" ","");
+        var frase_reves=frase.split("").reverse().join("");
+        if(frase===frase_reves){
+            alert("La frase introducida es palindromo");
+        }else{
+            alert("La frase introducida no es palindromo");
+        }
+    </script>
+</body>
+</html>
