@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 50</title>
+</head>
+<body>
+    <script>
+        /*Crea un script que nos permita almacenar por teclado los sueldos de un conjunto de
+        empleados. Finaliza la carga al ingresar cero. Muestra por pantalla los sueldos ordenados
+        de mayor a menor. */
+        var conjunto_sueldos=[];
+        var sueldos=null;
+        while(sueldos!=0){
+            sueldos=parseInt(prompt("Introduce el sueldo"));
+            if (isNaN(sueldos)) {
+                alert("Por favor, introduce un número válido.");
+                continue;
+            }
+            if(sueldos!=0){
+                conjunto_sueldos.push(sueldos);
+            }
+        }
+        conjunto_sueldos=conjunto_sueldos.sort((a,b)=>b-a);
+        alert("El vector ordenado de mayor a menor"+conjunto_sueldos);
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 47</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: justify;
+            line-height: 40px;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+        /*- Crear un vector con 5 valores aleatorios comprendidos entre 1 y 1000. Luego extrae
+        los dos últimos elementos, súmalos y muestrarlos. Imprimir también el tamaño final del
+        vector. */
+        var div=document.getElementById("div");
+        var vector=Array.from({length:5},()=>Math.floor(Math.random()*(1000-1+1)+1));
+        alert(vector);
+        var mostrar="El vector original es: "+vector;
+        var ultimo=vector.pop();
+        var penultimo=vector.pop();
+        var res=ultimo+penultimo;
+        mostrar+="<br>el penúltimo elemento del vector es: "+penultimo+" y el último es: "+ultimo+"<br>y la suma de ambos resulta en: "+res
+        div.innerHTML=mostrar;
+    </script>
+</body>
+</html>

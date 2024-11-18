@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 45</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="vector"></div>
+    <div id="vector_menores"></div>
+    <div id="vector_mayores"></div>
+    <script>
+        /*Crear un vector con 10 valores aleatorios comprendidos entre 1 y 500. Luego crea
+        otros dos vectores y copia los elementos menores a 250 en el segundo vector y los
+        mayores o iguales a 250 en el tercer vector. Imprimir los tamaños del segundo y tercer
+        vector. Imprimir los tres vectores. */
+        var vector=Array.from({length:10},()=>Math.floor(Math.random()*(500-1+1)+1));
+        var vector_mayores=[];
+        var vector_menores=[];
+        vector.forEach(numero => {
+            if(numero<250){
+                vector_menores.push(numero);
+            }else{
+                vector_mayores.push(numero);
+            }
+        });
+        var vector1=document.getElementById("vector");
+        var vector2=document.getElementById("vector_menores");
+        var vector3=document.getElementById("vector_mayores");
+        vector1.innerHTML="EL vector original es: "+vector+" y su longitud es de: "+vector.length;
+        vector2.innerHTML="El vector con los números menores a 250 es: "+vector_menores+" y su longitud es de: "+vector_menores.length;
+        vector3.innerHTML="El vector con los números mayores o iguales a 250 es: "+vector_mayores+" y su longitud es de: "+vector_mayores.length;
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 55</title>
+</head>
+<body>
+    <script>
+        /*Crear un vector de 10 elementos. Inicializa los valores del vector cuando se crea.
+    Inicializa dos variables que resulten de llamar primero al método toString() y la segunda
+    variable inicializala llamando al método join() sin parámetros. Muestra un mensaje si el
+    resultado de la ejecución de los dos métodos retorna el mismo valor (empleando un if
+    para comparar los string) */
+        var vector = Array.from({ length: 10 }, () => Math.floor(Math.random() * 1001));
+        var stringToString = vector.toString();
+        var stringjoin = vector.join("");
+        if (stringToString === stringjoin) {
+            alert("El resultado de toString() y join() sin parámetros es el mismo.");
+        } else {
+            alert("El resultado de toString() y join() sin parámetros es diferente.");
+        }
+        alert("Vector: "+vector);
+        alert("toString(): "+stringToString);
+        alert("join(): "+stringjoin);
+    </script>
+</body>
+</html>

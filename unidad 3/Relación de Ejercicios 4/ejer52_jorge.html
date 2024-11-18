@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 52</title>
+    <style>
+        div{
+            justify-content: center;
+            display: flex;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+        /*- Crear un vector de 10 elementos con valores aleatorios comprendidos entre 0 y 1000.
+        Buscar el menor y después generar otro vector a partir de dicha posición hasta el final. */
+        var vector1=Array.from({length:10},()=>Math.floor(Math.random()*(1000+1)));
+        var div=document.getElementById("div");
+        var menor=Math.min(...vector1);
+        var indiceMenor=vector1.indexOf(menor);
+        var res="El vector original es: "+vector1+"<br>Su valor menor es: "+menor+" y su posición es: "+indiceMenor;
+        var vector2=vector1.slice(indiceMenor);
+        res+="<br>El vector generado a partir del valor menor es: "+vector2;
+        div.innerHTML=res;
+    </script>
+</body>
+</html>

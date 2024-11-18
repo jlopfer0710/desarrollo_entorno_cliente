@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 51</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <script>
+        /*Crear un vector con una lista de 10 valores aleatorios. Luego borra los componentes
+        donde hay un 2 y al mismo tiempo insertar dos elementos con el valor 1. */
+        var div1=document.getElementById("div1");
+        var vector=Array.from({length:10},()=>Math.floor(Math.random()*(20-1+1)+1));
+        var res="El vector original es: "+vector;
+        div1.innerHTML=res;
+        for(let i=0;i<vector.length;i++){
+            if(vector[i]===2){
+                vector.splice(i,1);
+                vector.splice(i,0,1,1);
+                i+=1;
+            }
+        }
+        res="<br>El vector modificado es: "+vector;
+        div1.innerHTML+=res;
+    </script>
+</body>
+</html>

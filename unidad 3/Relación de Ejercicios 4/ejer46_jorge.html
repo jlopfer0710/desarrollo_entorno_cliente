@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 46</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+        /*Crear un vector de 1000 elementos que representen los números de una rifa. Las
+        posiciones indicaran los números que tienen premio. Almacena en dichas posiciones,
+        generadas de forma aleatoria, 10 premios con las cantidades 1000,2000,3000 etc. .
+        Imprime los números con premio y las cantidades de los mismos*/
+        var div=document.getElementById("div");
+        var vector=Array.from({length:1000}).fill(0);
+        var premios=[1000,2000,3000,4000,5000,6000,7000,8000,9000,10000];
+        var ganadores=[];
+        while(ganadores.length<premios.length){
+            var random=Math.floor(Math.random()*1000);
+            if(vector[random]===0){
+                vector[random]=premios[ganadores.length];
+                ganadores.push(random);
+            }
+        }
+        var mostrar="";
+        ganadores.forEach(posicion => {
+            mostrar+= `<br>El número ${posicion + 1} tiene un premio de ${vector[posicion]}<br>`;
+        });
+        
+        div.innerHTML=mostrar;
+    </script>
+</body>
+</html>

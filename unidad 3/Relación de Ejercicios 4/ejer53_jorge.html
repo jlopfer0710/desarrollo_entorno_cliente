@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 53</title>
+    <style>
+        div{
+            justify-content: center;
+            display: flex;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+        /*Crear un vector con los nombres de 5 personas. Imprimelos despues por pantalla
+            uno debajo de otro utilizando el método join para generar un string y añadele entre
+            elementos la marca html <br>.*/
+            var nombres = Array(5);
+            var div = document.getElementById("div");
+            for (let i = 0; i < nombres.length; i++) {
+                var nombre = prompt("Introduce el nombre");
+                nombres[i] = nombre;
+            }
+            nombres = nombres.join("<br>");
+            div.innerHTML = nombres;
+    </script>
+</body>
+</html>
