@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de las matrículas</title>
+</head>
+<body>
+    <script>
+        var num="";
+        var patron=/^[0-9]{4}$/;
+        do{
+            num=prompt("Introduce el número de 4 cifras");
+            var num_aux=num.split("");
+        }while(!num.match(patron));
+        num_aux.sort((a,b)=>a-b);
+        console.log(num_aux);
+        if(num_aux.every(element => element===num_aux[0])){
+            alert("Es un poker");
+        }else if((num_aux[0]===num_aux[1] &&num_aux[2]===num_aux[3])||(num_aux[0]===num_aux[2]&&num_aux[1]===num_aux[3])||(num_aux[0]===num_aux[3]&&num_aux[1]===num_aux[2])){
+            alert("Es una doble pareja");
+        }else if((num_aux[0]===num_aux[1]&&num_aux[0]===num_aux[2])||(num_aux[0]===num_aux[1]&&num_aux[0]===num_aux[3])||(num_aux[1]===num_aux[2]&&num_aux[1]===num_aux[3])){
+            alert("Es un trío");
+        }else if((parseInt(num_aux[0])+1)===parseInt(num_aux[1])&&parseInt(num_aux[0])+2===parseInt(num_aux[2])){
+            alert("Es una escalera simple");
+        }
+        alert("La probabilidad de que te salga un Póker es: "+probabilidad_poker());
+        function probabilidad_poker(){
+            let cont=0;
+            for(var i=0;i<10000;i++){
+                let mano=[];
+                for(let j=0;j<4;j++){
+                    mano.push(Math.floor(Math.random()*10));
+                }
+                if(esPoker(mano)){
+                    cont++;
+                }
+            }
+            alert(cont);
+            let probabilidad=cont/10000;
+            return probabilidad;
+        }
+        function esPoker(mano){
+            return mano.every(element => element===mano[0]);
+        }
+    </script>
+</body>
+</html>
