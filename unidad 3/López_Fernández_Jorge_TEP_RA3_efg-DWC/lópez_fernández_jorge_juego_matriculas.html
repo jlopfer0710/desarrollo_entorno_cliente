@@ -1,48 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de las matrículas</title>
 </head>
+
 <body>
     <script>
-        var num="";
-        var patron=/^[0-9]{4}$/;
-        do{
-            num=prompt("Introduce el número de 4 cifras");
-            var num_aux=num.split("");
-        }while(!num.match(patron));
-        num_aux.sort((a,b)=>a-b);
+        var num = "";
+        var patron = /^[0-9]{4}$/;
+        var cont_poker = 0, cont_pareja_doble = 0, cont_trio = 0, cont_escalera_simp = 0, cont_escalera_completa = 0;
+        do {
+            num = prompt("Introduce el número de 4 cifras");
+            var num_aux = num.split("");
+        } while (!num.match(patron));
+        num_aux.sort((a, b) => a - b);
         console.log(num_aux);
-        if(num_aux.every(element => element===num_aux[0])){
+        if (num_aux.every(element => element === num_aux[0])) {
             alert("Es un poker");
-        }else if((num_aux[0]===num_aux[1] &&num_aux[2]===num_aux[3])||(num_aux[0]===num_aux[2]&&num_aux[1]===num_aux[3])||(num_aux[0]===num_aux[3]&&num_aux[1]===num_aux[2])){
+        } else if ((num_aux[0] === num_aux[1] && num_aux[2] === num_aux[3]) || (num_aux[0] === num_aux[2] && num_aux[1] === num_aux[3]) || (num_aux[0] === num_aux[3] && num_aux[1] === num_aux[2])) {
             alert("Es una doble pareja");
-        }else if((num_aux[0]===num_aux[1]&&num_aux[0]===num_aux[2])||(num_aux[0]===num_aux[1]&&num_aux[0]===num_aux[3])||(num_aux[1]===num_aux[2]&&num_aux[1]===num_aux[3])){
+        } else if ((num_aux[0] === num_aux[1] && num_aux[0] === num_aux[2]) || (num_aux[0] === num_aux[1] && num_aux[0] === num_aux[3]) || (num_aux[1] === num_aux[2] && num_aux[1] === num_aux[3])) {
             alert("Es un trío");
-        }else if((parseInt(num_aux[0])+1)===parseInt(num_aux[1])&&parseInt(num_aux[0])+2===parseInt(num_aux[2])){
+        } else if ((parseInt(num_aux[0]) + 1) === parseInt(num_aux[1]) && parseInt(num_aux[0]) + 2 === parseInt(num_aux[2]) && (parseInt(num_aux[0]) + 3) !== parseInt(num_aux[3])) {
             alert("Es una escalera simple");
+        } else if ((parseInt(num_aux[0]) + 1) === parseInt(num_aux[1]) && parseInt(num_aux[0]) + 2 === parseInt(num_aux[2]) && (parseInt(num_aux[0]) + 3) === parseInt(num_aux[3])) {
+            alert("Es una escalera completa");
         }
-        alert("La probabilidad de que te salga un Póker es: "+probabilidad_poker());
-        function probabilidad_poker(){
-            let cont=0;
-            for(var i=0;i<10000;i++){
-                let mano=[];
-                for(let j=0;j<4;j++){
-                    mano.push(Math.floor(Math.random()*10));
+        probabilidades();
+        function probabilidades() {
+            let prob_poker;
+            for (let i = 0; i < 10000; i++) {
+                var aux = [];
+                if (i < 10) {
+                    let i_aux = i.toString();
+                    aux = i_aux.split("");
+                    aux.unshift("0");
+                    aux.unshift("0");
+                    aux.unshift("0");
+                    console.log(aux);
+                } else if (i < 100) {
+                    let i_aux = i.toString();
+                    aux = i_aux.split("");
+                    aux.unshift("0");
+                    aux.unshift("0");
+                    console.log(aux);
+                } else if (i <= 999) {
+                    let i_aux = i.toString();
+                    aux = i_aux.split("");
+                    aux.unshift("0");
+                    console.log(aux);
+                } else {
+                    let i_aux = i.toString();
+                    aux = i_aux.split("");
+                    console.log(aux);
                 }
-                if(esPoker(mano)){
-                    cont++;
-                }
+                validar(aux);
             }
-            alert(cont);
-            let probabilidad=cont/10000;
-            return probabilidad;
+            alert("El contador de poker es de: " + cont_poker);
+            prob_poker=(cont_poker/10000)*100;
+            alert("La probabilidad de que salga un poker es de: "+prob_poker+"%");
+            console.log(aux);
         }
-        function esPoker(mano){
-            return mano.every(element => element===mano[0]);
+        function validar(aux) {
+            if (aux.every(element => element === aux[0])) {
+                cont_poker++;
+            } else if ((aux[0] === aux[1] && aux[2] === aux[3]) || (aux[0] === aux[2] && aux[1] === aux[3]) || (aux[0] === aux[3] && aux[1] === aux[2])) {
+                cont_pareja_doble++;
+            } else if ((aux[0] === aux[1] && aux[0] === aux[2]) || (aux[0] === aux[1] && aux[0] === aux[3]) || (aux[1] === aux[2] && aux[1] === aux[3])) {
+                cont_trio++;
+            } else if ((parseInt(aux[0]) + 1) === parseInt(aux[1]) && parseInt(aux[0]) + 2 === parseInt(aux[2]) && (parseInt(aux[0]) + 3) !== parseInt(aux[3])) {
+                cont_escalera_simp++;
+            } else if ((parseInt(aux[0]) + 1) === parseInt(aux[1]) && parseInt(aux[0]) + 2 === parseInt(aux[2]) && (parseInt(aux[0]) + 3) === parseInt(aux[3])) {
+                cont_escalera_completa++;
+            }
         }
     </script>
 </body>
+
 </html>
