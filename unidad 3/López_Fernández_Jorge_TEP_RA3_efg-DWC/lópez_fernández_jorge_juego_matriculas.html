@@ -17,6 +17,7 @@
             var num_aux = num.split("");
         } while (!num.match(patron));
         num_aux.sort((a, b) => a - b);
+        alert(num_aux);
         console.log(num_aux);
         if (num_aux.every(element => element === num_aux[0])) {
             alert("Es un poker");
@@ -24,14 +25,19 @@
             alert("Es una doble pareja");
         } else if ((num_aux[0] === num_aux[1] && num_aux[0] === num_aux[2]) || (num_aux[0] === num_aux[1] && num_aux[0] === num_aux[3]) || (num_aux[1] === num_aux[2] && num_aux[1] === num_aux[3])) {
             alert("Es un trío");
-        } else if ((parseInt(num_aux[0]) + 1) === parseInt(num_aux[1]) && parseInt(num_aux[0]) + 2 === parseInt(num_aux[2]) && (parseInt(num_aux[0]) + 3) !== parseInt(num_aux[3])) {
-            alert("Es una escalera simple");
         } else if ((parseInt(num_aux[0]) + 1) === parseInt(num_aux[1]) && parseInt(num_aux[0]) + 2 === parseInt(num_aux[2]) && (parseInt(num_aux[0]) + 3) === parseInt(num_aux[3])) {
             alert("Es una escalera completa");
+        } else if (
+            (parseInt(num_aux[0]) + 1 === parseInt(num_aux[1]) && parseInt(num_aux[1]) + 1 === parseInt(num_aux[2])) ||
+            (parseInt(num_aux[1]) + 1 === parseInt(num_aux[2]) && parseInt(num_aux[2]) + 1 === parseInt(num_aux[3])) ||
+            (parseInt(num_aux[0]) + 1 === parseInt(num_aux[1]) && parseInt(num_aux[1]) + 1 === parseInt(num_aux[3])) ||
+            (parseInt(num_aux[0]) + 1 === parseInt(num_aux[2]) && parseInt(num_aux[2]) + 1 === parseInt(num_aux[3]))
+        ) {
+            alert("Es una escalera simple");
         }
         probabilidades();
         function probabilidades() {
-            let prob_poker;
+            var prob_poker = 0, prob_trio = 0, prob_pareja = 0, prob_escalera_simp = 0, prob_escalera_comp = 0;
             for (let i = 0; i < 10000; i++) {
                 var aux = [];
                 if (i < 10) {
@@ -40,42 +46,101 @@
                     aux.unshift("0");
                     aux.unshift("0");
                     aux.unshift("0");
+                    aux.sort((a, b) => a - b)
                     console.log(aux);
                 } else if (i < 100) {
                     let i_aux = i.toString();
                     aux = i_aux.split("");
                     aux.unshift("0");
                     aux.unshift("0");
+                    aux.sort((a, b) => a - b)
                     console.log(aux);
                 } else if (i <= 999) {
                     let i_aux = i.toString();
                     aux = i_aux.split("");
                     aux.unshift("0");
+                    aux.sort((a, b) => a - b)
                     console.log(aux);
                 } else {
                     let i_aux = i.toString();
                     aux = i_aux.split("");
+                    aux.sort((a, b) => a - b)
                     console.log(aux);
                 }
-                validar(aux);
+                if (esPoker(aux)) {
+                    cont_poker++;
+                } else if (esParejaDoble(aux)) {
+                    cont_pareja_doble++;
+                } else if (esTrio(aux)) {
+                    cont_trio++;
+                } else if (esEscaleraComp(aux)) {
+                    cont_escalera_completa++;
+                } else if (esEscaleraSimp(aux)) {
+                    cont_escalera_simp++;
+                }
             }
-            alert("El contador de poker es de: " + cont_poker);
-            prob_poker=(cont_poker/10000)*100;
-            alert("La probabilidad de que salga un poker es de: "+prob_poker+"%");
+            alert("En una baraja hay : " + cont_escalera_simp + " escaleras simples");
+            prob_poker = (cont_poker / 10000) * 100;
+            prob_trio = (cont_trio / 10000) * 100;
+            prob_pareja = (cont_pareja_doble / 10000) * 100;
+            prob_escalera_simp = (cont_escalera_simp / 10000) * 100;
+            prob_escalera_comp = (cont_escalera_completa / 10000) * 100;
+            alert("La probabilidad de que salga un poker es de: " + prob_poker + "%");
+            alert("La probabilidad de que salga un trio es de: " + prob_trio + "%");
+            alert("La probabilidad de que salga una pareja doble es de: " + prob_pareja + "%");
+            alert("La probabilidad de que salga una escalera simple es de: " + prob_escalera_simp + "%");
+            alert("La probabilidad de que salga una escalera completa es de: " + prob_escalera_comp + "%");
             console.log(aux);
+
         }
-        function validar(aux) {
+        function esPoker(aux) {
+            let res;
             if (aux.every(element => element === aux[0])) {
-                cont_poker++;
-            } else if ((aux[0] === aux[1] && aux[2] === aux[3]) || (aux[0] === aux[2] && aux[1] === aux[3]) || (aux[0] === aux[3] && aux[1] === aux[2])) {
-                cont_pareja_doble++;
-            } else if ((aux[0] === aux[1] && aux[0] === aux[2]) || (aux[0] === aux[1] && aux[0] === aux[3]) || (aux[1] === aux[2] && aux[1] === aux[3])) {
-                cont_trio++;
-            } else if ((parseInt(aux[0]) + 1) === parseInt(aux[1]) && parseInt(aux[0]) + 2 === parseInt(aux[2]) && (parseInt(aux[0]) + 3) !== parseInt(aux[3])) {
-                cont_escalera_simp++;
-            } else if ((parseInt(aux[0]) + 1) === parseInt(aux[1]) && parseInt(aux[0]) + 2 === parseInt(aux[2]) && (parseInt(aux[0]) + 3) === parseInt(aux[3])) {
-                cont_escalera_completa++;
+                res = true;
+            } else {
+                res = false;
             }
+            return res;
+        }
+        function esParejaDoble(aux) {
+            let res;
+            if ((aux[0] === aux[1] && aux[2] === aux[3]) || (aux[0] === aux[2] && aux[1] === aux[3]) || (aux[0] === aux[3] && aux[1] === aux[2])) {
+                res = true;
+            } else {
+                res = false;
+            }
+            return res;
+        }
+        function esTrio(aux) {
+            let res;
+            if ((aux[0] === aux[1] && aux[0] === aux[2]) || (aux[0] === aux[1] && aux[0] === aux[3]) || (aux[1] === aux[2] && aux[1] === aux[3])) {
+                res = true;
+            } else {
+                res = false;
+            }
+            return res;
+        }
+        function esEscaleraSimp(aux) {
+            let res;
+            if (
+                (parseInt(aux[0]) + 1 === parseInt(aux[1]) && parseInt(aux[1]) + 1 === parseInt(aux[2])) ||
+                (parseInt(aux[1]) + 1 === parseInt(aux[2]) && parseInt(aux[2]) + 1 === parseInt(aux[3])) ||
+                (parseInt(aux[0]) + 1 === parseInt(aux[1]) && parseInt(aux[1]) + 1 === parseInt(aux[3])) ||
+                (parseInt(aux[0]) + 1 === parseInt(aux[2]) && parseInt(aux[2]) + 1 === parseInt(aux[3]))
+            ) {
+                res=true;
+            }else{
+                res=false;
+            }
+            return res;
+        }
+        function esEscaleraComp(aux) {
+            let res;
+            if ((parseInt(aux[0]) + 1) === parseInt(aux[1]) && parseInt(aux[0]) + 2 === parseInt(aux[2]) && (parseInt(aux[0]) + 3) === parseInt(aux[3])) {
+                res = true;
+            } else {
+                res = false;
+            } return res;
         }
     </script>
 </body>
