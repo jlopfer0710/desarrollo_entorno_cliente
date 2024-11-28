@@ -1,27 +1,50 @@
 
-var patron = /^[0-9]{4}$/;
-var cont_poker = 0, cont_pareja_doble = 0, cont_trio = 0, cont_escalera_simp = 0, cont_escalera_completa = 0;
+var cont=0;
+var patron = /^[0-9]{4}$/;//patrón para controlar que el valor introducido es válido
+var cont_poker = 0, cont_pareja_doble = 0, cont_trio = 0, cont_escalera_simp = 0, cont_escalera_completa = 0;//todos los contadores necesarios
 var inputValor, figura = "";
 var prob_poker = 0, prob_trio = 0, prob_pareja = 0, prob_escalera_simp = 0, prob_escalera_comp = 0,ventana;
+ // Función para establecer una cookie
+ function setCookie(nombre, valor, dias) {
+    const fecha = new Date();
+    fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000)); // Tiempo de expiración
+    document.cookie = `${nombre}=${valor}; expires=${fecha.toUTCString()}; path=/`;
+}
+// Función para obtener una cookie
+function getCookie(nombre) {
+    const name = `${nombre}=`;
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        let c = cookies[i].trim();
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return null;
+}
 function jugar() {
     if (!inputValor.match(patron)) {
         alert("Recuerda que debes introducir una mano de 4 cartas compuesta por números del 0 al 9");
     } else {
-        var num_aux = inputValor.split("");
-        num_aux.sort((a, b) => a - b);
-        if (num_aux.every(element => element === num_aux[0])) {
+        cont=getCookie("contador");
+        cont = cont ? parseInt(cont) + 1 : 1; // Incrementar el conteo
+                setCookie("contador", cont, 7); // Guardar cookie con duración de 7 días
+                console.log(`Veces introducido correctamente: ${cont}`);//se muestra la cookie por consola
+        var num_aux = inputValor.split("");//pasamos el número introducido a array
+        num_aux.sort((a, b) => a - b);//ordenamos el array
+        if (num_aux.every(element => element === num_aux[0])) {//condición para que sea poker
             figura = "Es un poker";
-        } else if ((num_aux[0] === num_aux[1] && num_aux[2] === num_aux[3]) || (num_aux[0] === num_aux[2] && num_aux[1] === num_aux[3]) || (num_aux[0] === num_aux[3] && num_aux[1] === num_aux[2])) {
+        } else if ((num_aux[0] === num_aux[1] && num_aux[2] === num_aux[3]) || (num_aux[0] === num_aux[2] && num_aux[1] === num_aux[3]) || (num_aux[0] === num_aux[3] && num_aux[1] === num_aux[2])) {//condición para que sea una doble pareja
             figura = "Es una doble pareja";
-        } else if ((num_aux[0] === num_aux[1] && num_aux[0] === num_aux[2]) || (num_aux[0] === num_aux[1] && num_aux[0] === num_aux[3]) || (num_aux[1] === num_aux[2] && num_aux[1] === num_aux[3])) {
+        } else if ((num_aux[0] === num_aux[1] && num_aux[0] === num_aux[2]) || (num_aux[0] === num_aux[1] && num_aux[0] === num_aux[3]) || (num_aux[1] === num_aux[2] && num_aux[1] === num_aux[3])) {//condición para que sea un trío
             figura = "Es un trío";
-        } else if ((parseInt(num_aux[0]) + 1) === parseInt(num_aux[1]) && parseInt(num_aux[0]) + 2 === parseInt(num_aux[2]) && (parseInt(num_aux[0]) + 3) === parseInt(num_aux[3])) {
+        } else if ((parseInt(num_aux[0]) + 1) === parseInt(num_aux[1]) && parseInt(num_aux[0]) + 2 === parseInt(num_aux[2]) && (parseInt(num_aux[0]) + 3) === parseInt(num_aux[3])) {//condición para que sea una escalera completa
             figura = "Es una escalera completa";
         } else if (
             (parseInt(num_aux[0]) + 1 === parseInt(num_aux[1]) && parseInt(num_aux[1]) + 1 === parseInt(num_aux[2])) ||
             (parseInt(num_aux[1]) + 1 === parseInt(num_aux[2]) && parseInt(num_aux[2]) + 1 === parseInt(num_aux[3])) ||
             (parseInt(num_aux[0]) + 1 === parseInt(num_aux[1]) && parseInt(num_aux[1]) + 1 === parseInt(num_aux[3])) ||
-            (parseInt(num_aux[0]) + 1 === parseInt(num_aux[2]) && parseInt(num_aux[2]) + 1 === parseInt(num_aux[3]))
+            (parseInt(num_aux[0]) + 1 === parseInt(num_aux[2]) && parseInt(num_aux[2]) + 1 === parseInt(num_aux[3]))    //condiciones para que sea una escalera simple
         ) {
             figura = "Es una escalera simple";
         }
@@ -29,41 +52,32 @@ function jugar() {
     }
 }
 function probabilidades() {
-    var poker = document.getElementById("poker");
-    var doble = document.getElementById("doble");
-    var trio = document.getElementById("trio");
-    var simp = document.getElementById("simp");
-    var comp = document.getElementById("comp");
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 10000; i++) {//recorremos las 10000 posibilidades de baraja
         var aux = [];
-        if (i < 10) {
+        if (i < 10) {//añadimos 0 a la izquierda para que sewa válida la baraja y la ordenamos
             let i_aux = i.toString();
             aux = i_aux.split("");
             aux.unshift("0");
             aux.unshift("0");
             aux.unshift("0");
             aux.sort((a, b) => a - b)
-            console.log(aux);
-        } else if (i < 100) {
+        } else if (i < 100) {//añadimos 0 a la izquierda para que sewa válida la baraja y la ordenamos
             let i_aux = i.toString();
             aux = i_aux.split("");
             aux.unshift("0");
             aux.unshift("0");
             aux.sort((a, b) => a - b)
-            console.log(aux);
-        } else if (i <= 999) {
+        } else if (i <= 999) {//añadimos 0 a la izquierda para que sewa válida la baraja y la ordenamos
             let i_aux = i.toString();
             aux = i_aux.split("");
             aux.unshift("0");
             aux.sort((a, b) => a - b)
-            console.log(aux);
-        } else {
+        } else {//aquí como cumple con la longitud solo se ordena
             let i_aux = i.toString();
             aux = i_aux.split("");
             aux.sort((a, b) => a - b)
-            console.log(aux);
         }
-        if (esPoker(aux)) {
+        if (esPoker(aux)) {//si es alguna de las figuras se aumenta en 1 un contador para después poder calcular las probabilidades
             cont_poker++;
         } else if (esParejaDoble(aux)) {
             cont_pareja_doble++;
@@ -87,7 +101,7 @@ function probabilidades() {
     prob_escalera_comp = prob_escalera_comp.toFixed(2);
     abrirVentana();
 }
-function esPoker(aux) {
+function esPoker(aux) {//función para comprobar si es poker
     let res;
     if (aux.every(element => element === aux[0])) {
         res = true;
@@ -96,7 +110,7 @@ function esPoker(aux) {
     }
     return res;
 }
-function esParejaDoble(aux) {
+function esParejaDoble(aux) {//función para comprobar si es pareja doble
     let res;
     if ((aux[0] === aux[1] && aux[2] === aux[3]) || (aux[0] === aux[2] && aux[1] === aux[3]) || (aux[0] === aux[3] && aux[1] === aux[2])) {
         res = true;
@@ -105,7 +119,7 @@ function esParejaDoble(aux) {
     }
     return res;
 }
-function esTrio(aux) {
+function esTrio(aux) {//función para comprobar si es trío
     let res;
     if ((aux[0] === aux[1] && aux[0] === aux[2]) || (aux[0] === aux[1] && aux[0] === aux[3]) || (aux[1] === aux[2] && aux[1] === aux[3])) {
         res = true;
@@ -114,7 +128,7 @@ function esTrio(aux) {
     }
     return res;
 }
-function esEscaleraSimp(aux) {
+function esEscaleraSimp(aux) {//función para comprobar si es escalera simple
     let res;
     if (
         (parseInt(aux[0]) + 1 === parseInt(aux[1]) && parseInt(aux[1]) + 1 === parseInt(aux[2])) ||
@@ -128,7 +142,7 @@ function esEscaleraSimp(aux) {
     }
     return res;
 }
-function esEscaleraComp(aux) {
+function esEscaleraComp(aux) {//función para comprobar si es completa
     let res;
     if ((parseInt(aux[0]) + 1) === parseInt(aux[1]) && parseInt(aux[0]) + 2 === parseInt(aux[2]) && (parseInt(aux[0]) + 3) === parseInt(aux[3])) {
         res = true;
@@ -136,7 +150,7 @@ function esEscaleraComp(aux) {
         res = false;
     } return res;
 }
-function capturarvalor() {
+function capturarvalor() {//función para conseguir el valor del elemento introducido mediante el input
     inputValor = document.getElementById("put").value;
     if (inputValor.trim() === "") {
         alert("¡Por favor, ingresa un valor en el campo!");
@@ -144,7 +158,7 @@ function capturarvalor() {
         jugar();
     }
 }
-function abrirVentana() {
+function abrirVentana() {//función para abrir la ventana
     var ancho = 400;  // Ancho de la ventana
     var alto = 400;   // Alto de la ventana
 
