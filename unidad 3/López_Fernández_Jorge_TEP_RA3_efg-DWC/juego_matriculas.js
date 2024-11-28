@@ -1,7 +1,8 @@
 
 var patron = /^[0-9]{4}$/;
 var cont_poker = 0, cont_pareja_doble = 0, cont_trio = 0, cont_escalera_simp = 0, cont_escalera_completa = 0;
-var inputValor,figura="";
+var inputValor, figura = "";
+var prob_poker = 0, prob_trio = 0, prob_pareja = 0, prob_escalera_simp = 0, prob_escalera_comp = 0,ventana;
 function jugar() {
     if (!inputValor.match(patron)) {
         alert("Recuerda que debes introducir una mano de 4 cartas compuesta por números del 0 al 9");
@@ -9,31 +10,30 @@ function jugar() {
         var num_aux = inputValor.split("");
         num_aux.sort((a, b) => a - b);
         if (num_aux.every(element => element === num_aux[0])) {
-            figura="Es un poker";
+            figura = "Es un poker";
         } else if ((num_aux[0] === num_aux[1] && num_aux[2] === num_aux[3]) || (num_aux[0] === num_aux[2] && num_aux[1] === num_aux[3]) || (num_aux[0] === num_aux[3] && num_aux[1] === num_aux[2])) {
-            figura="Es una doble pareja";
+            figura = "Es una doble pareja";
         } else if ((num_aux[0] === num_aux[1] && num_aux[0] === num_aux[2]) || (num_aux[0] === num_aux[1] && num_aux[0] === num_aux[3]) || (num_aux[1] === num_aux[2] && num_aux[1] === num_aux[3])) {
-            figura="Es un trío";
+            figura = "Es un trío";
         } else if ((parseInt(num_aux[0]) + 1) === parseInt(num_aux[1]) && parseInt(num_aux[0]) + 2 === parseInt(num_aux[2]) && (parseInt(num_aux[0]) + 3) === parseInt(num_aux[3])) {
-            figura="Es una escalera completa";
+            figura = "Es una escalera completa";
         } else if (
             (parseInt(num_aux[0]) + 1 === parseInt(num_aux[1]) && parseInt(num_aux[1]) + 1 === parseInt(num_aux[2])) ||
             (parseInt(num_aux[1]) + 1 === parseInt(num_aux[2]) && parseInt(num_aux[2]) + 1 === parseInt(num_aux[3])) ||
             (parseInt(num_aux[0]) + 1 === parseInt(num_aux[1]) && parseInt(num_aux[1]) + 1 === parseInt(num_aux[3])) ||
             (parseInt(num_aux[0]) + 1 === parseInt(num_aux[2]) && parseInt(num_aux[2]) + 1 === parseInt(num_aux[3]))
         ) {
-            figura="Es una escalera simple";
+            figura = "Es una escalera simple";
         }
-        abrirVentana();
+        probabilidades();
     }
 }
 function probabilidades() {
-    var poker=document.getElementById("poker");
-    var doble=document.getElementById("doble");
-    var trio=document.getElementById("trio");
-    var simp=document.getElementById("simp");
-    var comp=document.getElementById("comp");
-    var prob_poker = 0, prob_trio = 0, prob_pareja = 0, prob_escalera_simp = 0, prob_escalera_comp = 0;
+    var poker = document.getElementById("poker");
+    var doble = document.getElementById("doble");
+    var trio = document.getElementById("trio");
+    var simp = document.getElementById("simp");
+    var comp = document.getElementById("comp");
     for (let i = 0; i < 10000; i++) {
         var aux = [];
         if (i < 10) {
@@ -85,11 +85,7 @@ function probabilidades() {
     prob_escalera_simp = prob_escalera_simp.toFixed(2);
     prob_escalera_comp = (cont_escalera_completa / 10000) * 100;
     prob_escalera_comp = prob_escalera_comp.toFixed(2);
-    poker.innerHTML+=prob_poker+"%";
-    doble.innerHTML+=prob_pareja+"%";
-    trio.innerHTML+=prob_trio+"%";
-    simp.innerHTML+=prob_escalera_simp+"%";
-    comp.innerHTML+=prob_escalera_comp+"%";
+    abrirVentana();
 }
 function esPoker(aux) {
     let res;
@@ -143,11 +139,9 @@ function esEscaleraComp(aux) {
 function capturarvalor() {
     inputValor = document.getElementById("put").value;
     if (inputValor.trim() === "") {
-        event.preventDefault();
         alert("¡Por favor, ingresa un valor en el campo!");
     } else {
-        event.preventDefault();
-        alert(`Valor capturado: ${inputValor}`);
+        jugar();
     }
 }
 function abrirVentana() {
@@ -159,6 +153,13 @@ function abrirVentana() {
     var y = (window.innerHeight - alto) / 2;  // Centrado vertical
 
     // Abrir la ventana centrada
-    ventana=window.open("", "Probabilidades", `width=${ancho},height=${alto},top=${y},left=${x}`);
-    ventana.document.write('<h1>Figura:</h1><br><p>'+figura+'</p>');
+    ventana = window.open("", "Probabilidades", `width=${ancho},height=${alto},top=${y},left=${x}`);
+    
+    // Asegurarse de que el contenido está cargado antes de intentar manipularlo
+    ventana.document.write('<style>body{ background-color: rgb(185, 185, 185); display: flex; justify-content: center; align-items: center; flex-direction: column;}</style>');
+    ventana.document.write('<h2>Figura:</h2><p>' + figura + '</p><h2>Probabilidades:</h2><p>Poker: '+prob_poker+'%</p><p>Doble Pareja: '+prob_pareja+'%</p><p>Trío: '+prob_trio+'%</p><p>Escalera simple: '+prob_escalera_simp+'%</p><p>Escalera completa: '+prob_escalera_comp+'%</p>');
+    setTimeout(cerrarVentana,10000);
+}
+function cerrarVentana() {
+        ventana.close();  // Cierra la ventana emergente
 }
