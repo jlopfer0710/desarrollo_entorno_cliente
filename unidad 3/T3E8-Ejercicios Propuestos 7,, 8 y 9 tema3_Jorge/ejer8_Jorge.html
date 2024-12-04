@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+    <script>
+        var perrillos=['Rocket','Flash','Bella','Slugger'];
+        console.log(perrillos.toString());
+        for(var i=0;i<perrillos.length;i++){
+            if(perrillos[i].includes("c")||perrillos[i].includes("C")){
+                perrillos.splice(i,1);
+                i--;
+            }
+        }
+        console.log(perrillos.toString());
+        var ciudades= 'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle';
+        perrillos=perrillos.concat(ciudades.split(','));
+        console.log(perrillos.toString());
+        perrillos.unshift("Estepona");
+        console.log(perrillos.toString());
+        //a)Para empezarla consola no mostrará nada ya que el console de console.log está con la c mayúscula
+    </script>
+</body>
+</html>

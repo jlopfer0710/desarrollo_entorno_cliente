@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 9</title>
+</head>
+
+<body>
+    <center>
+        <h1>Buscador de Códigos Postales y Ciudades</h1>
+
+    <input type="text" id="buscador" placeholder="Buscar código postal o ciudad...">
+    <button onclick="buscar()">Buscar</button>
+
+    <div class="resultados" id="resultados"></div>
+    </center>
+    <script>
+        var arrayDeCiudades = [
+            "10001;Madrid", "10002;Barcelona", "10003;Valencia", "10004;Sevilla",
+            "10005;Zaragoza", "10006;Málaga", "10007;Murcia", "10008;Bilbao",
+            "10009;Alicante", "10010;Córdoba", "10011;Valladolid", "10012;Vigo",
+            "10013;Gijón", "10014;Granada", "10015;Elche", "10016;Oviedo",
+            "10017;Cartagena", "10018;Terrassa", "10019;Sabadell", "10020;Santander",
+            "10021;Almería", "10022;San Sebastián", "10023;Burgos", "10024;Salamanca",
+            "10025;Logroño", "10026;Huelva", "10027;Tarragona", "10028;León",
+            "10029;Cádiz", "10030;Albacete", "10031;Jaén", "10032;Ourense",
+            "10033;Lugo", "10034;Badajoz", "10035;Palma", "10036;Pamplona",
+            "10037;Vitoria", "10038;Castellón", "10039;La Coruña", "10040;San Fernando",
+            "10041;Getafe", "10042;Alcobendas", "10043;Reus", "10044;Talavera",
+            "10045;Fuenlabrada", "10046;Lorca", "10047;Parla", "10048;Móstoles",
+            "10049;Alcorcón", "10050;Rivas", "10051;Marbella", "10052;Benidorm",
+            "10053;Torremolinos", "10054;Estepona", "10055;Gandía", "10056;Pontevedra",
+            "10057;Segovia", "10058;Avilés", "10059;Ciudad Real", "10060;Zamora",
+            "10061;Ávila", "10062;Toledo", "10063;Huesca", "10064;Cáceres",
+            "10065;Lleida", "10066;Girona", "10067;Ceuta", "10068;Melilla",
+            "10069;Elda", "10070;Orihuela", "10071;El Ejido", "10072;Telde",
+            "10073;Santa Cruz de Tenerife", "10074;Las Palmas", "10075;Manresa",
+            "10076;Puerto de Santa María", "10077;Torrevieja", "10078;Mérida",
+            "10079;Ferrol", "10080;Vélez-Málaga", "10081;Santiago de Compostela",
+            "10082;Villena", "10083;Sanlúcar", "10084;Arrecife", "10085;Chiclana",
+            "10086;Ponferrada", "10087;Roquetas de Mar", "10088;Plasencia",
+            "10089;Calahorra", "10090;Almuñécar", "10091;Motril", "10092;Irun",
+            "10093;Barakaldo", "10094;Majadahonda", "10095;Coslada", "10096;San Sebastián de los Reyes",
+            "10097;Villaviciosa de Odón", "10098;Tudela", "10099;Antequera", "10100;Ronda"
+        ];
+        function buscar() {
+            var textoBusqueda = document.getElementById('buscador').value.toLowerCase();
+            var resultados = document.getElementById('resultados');
+            resultados.innerHTML = '';
+            var coincidencias = arrayDeCiudades.filter(ciudad => 
+                ciudad.toLowerCase().includes(textoBusqueda)
+            );
+
+
+            if (coincidencias.length > 0) {
+                coincidencias.forEach(coincidencia => {
+                    var divResultado = document.createElement('div');
+                    divResultado.classList.add('resultado');
+                    divResultado.textContent = coincidencia;
+                    resultados.appendChild(divResultado);
+                });
+            } else {
+                resultados.innerHTML = 'No se encontraron resultados.';
+            }
+        }
+
+    </script>
+</body>
+
+</html>

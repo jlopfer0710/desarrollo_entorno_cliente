@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <ul></ul>
+    <script>
+        var list=document.querySelector('ul');
+        list.innerHTML='';
+        var equipos=["MAN67584758374sjt567654;Manchester United","RMD576746573fhgd4737dh4;Real Madrid","LIV5hg65hd737456236dch46dg4;Liverpool FC","SEV4f65hf75f736463;Sevilla FC","BAR5767ghtyfyr4536dg45dg3;Barcelona FC"];
+        for(var i=0;i<equipos.length;i++){
+            var input=equipos[i];
+            var aux=equipos[i].split(";");
+            input=aux[0].substring(0,3)+" : "+aux[1];
+            var result=input;
+            var listItem=document.createElement('li');
+            listItem.textContent=result;
+            list.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
