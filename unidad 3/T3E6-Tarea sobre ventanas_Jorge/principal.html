@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento principal</title>
+</head>
+<body>
+    <script>
+        var ventanaSecundaria=null;
+        var parametros = "width=400, height=300, left=200, top=150 resizable=no, menubar=no, toolbar=no, directories=no, location=no, scrollbars=no, status=no";
+        function abrirVentana(){
+           ventanaSecundaria= window.open("nueva_ventana.html","ventana",parametros);
+        }
+        function cerrarVentana(){
+            if(ventanaSecundaria){
+                ventanaSecundaria.close();
+            }
+        }
+        function aplicarCoordenadas() {
+            var left = prompt("Ingrese la nueva posición horizontal de la ventana secundaria:");
+            var top = prompt("Ingrese la nueva posición vertical de la ventana secundaria:");
+            if (ventanaSecundaria) {
+                ventanaSecundaria.moveTo(left, top);
+            }
+        }
+        function cambiarColor() {
+            var color = document.getElementById("select").value;
+            if (ventanaSecundaria) {
+                ventanaSecundaria.document.body.style.backgroundColor = color;
+            }
+        }
+        function ponerFocus() {
+            if (ventanaSecundaria) {
+                ventanaSecundaria.focus();
+            }
+        }
+        function quitarFocus() {
+            if (ventanaSecundaria) {
+                ventanaSecundaria.blur();
+            }
+        }
+        function establecerTiempo() {
+            var tiempo = prompt("¿Cuánto tiempo debe permanecer abierta la ventana secundaria? (en segundos):");
+            if (ventanaSecundaria) {
+                setTimeout(function() {
+                    ventanaSecundaria.close();
+                }, tiempo * 1000);
+            }
+        }
+        function cambiarTexto() {
+            var texto = prompt("Ingrese el texto que desea mostrar en la ventana secundaria:");
+            if (ventanaSecundaria) {
+                ventanaSecundaria.document.body.innerHTML = "<h1>" + texto + "</h1>";
+            }
+        }
+        function cambiarTamanoYColorTexto() {
+            var tamano = prompt("Ingrese el tamaño del texto (ej. 20px):");
+            var colorTexto = prompt("Ingrese el color del texto (ej. red, blue, etc.):");
+            if (ventanaSecundaria) {
+                var body = ventanaSecundaria.document.body;
+                var texto = body.getElementsByTagName("h1")[0];
+                texto.style.fontSize = tamano;
+                texto.style.color = colorTexto;
+            }
+        }
+    </script>
+    <center>
+        <button onclick="abrirVentana()">Abrir ventana secundaria</button><br><br>
+        <button onclick="cerrarVentana()">Cerrar ventana secundaria</button><br><br>
+        <button onclick="aplicarCoordenadas()">Aplicar coordenadas</button><br><br>
+        <select name="" id="select">
+            <option value="red">Rojo</option>
+            <option value="blue">Azul</option>
+            <option value="yellow">Amarillo</option>
+            <option value="green">Verde</option>
+        </select><br><br>
+        <button onclick="cambiarColor()">Cambiar color de la ventana secundaria</button><br><br>
+        <button onclick="ponerFocus()">Poner ventana secundaria en foco</button><br><br>
+        <button onclick="quitarFocus()">Quitar foco de la ventana secundaria</button><br><br>
+        <button onclick="establecerTiempo()">Establecer tiempo de cierre</button><br><br>
+        <button onclick="cambiarTexto()">Cambiar texto de la ventana secundaria</button><br><br>
+        <button onclick="cambiarTamanoYColorTexto()">Cambiar tamaño y color del texto</button>
+    </center>
+    </center>
+</body>
+</html>
