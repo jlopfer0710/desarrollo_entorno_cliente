@@ -1,0 +1,32 @@
+<!--Elabora una secuencia de imágenes con al menos 4 fotogramas. Según el usuario vaya haciendi clic sobre las imágenes, la secuencia se irá reproduciendo-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio propuesto 2</title>
+</head>
+<body>
+    <h1>Cambio de imágenes con JavaScript</h1>
+    <img id="imagen" onclick="cambiaPic()" src="img1.jpg" width="400" height="400">
+    <p>Haz click sobre la imagen.</p>
+    <script>
+        function cambiaPic(){
+            var image=document.getElementById('imagen');
+            if(image.src.match("img1")){
+                image.src= "img2.jpg";
+            }else{
+                if(image.src.match("img2")){
+                    image.src="img3.jpg";
+                }else{
+                    if(image.src.match("img3")){
+                        image.src="img4.jpg";
+                    }else{
+                        image.src="img1.jpg";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
