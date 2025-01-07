@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <!-- Ejercicio 3.Mejora el formulario con un campo de email que también sea validado por el botón anterior-->
+    <input type="text" name="" id="nombre" placeholder="Nombre">
+    <input type="password" name="" id="apellidos" placeholder="Apellidos">
+    <input type="text" id="email" placeholder="Email">
+    <button onclick="validar()">Validar</button>
+    <div id="mensaje"></div>
+    <script>
+        function validar(){
+            var nombre=document.getElementById("nombre").value;
+            var apellidos=document.getElementById("apellidos").value;
+            var mensaje=document.getElementById("mensaje");
+            var email=document.getElementById("email").value;
+            var regex=/^[a-zA-Z0-9]+@[a-z]+.[a-z]+$/;
+            var res=regex.test(email);
+            if(nombre=="" &&apellidos=="" && email==""){
+                mensaje.innerHTML="Los campos están vacíos"
+            }else if(nombre=="" || apellidos=="" || email==""){
+                mensaje.innerHTML="Uno de los campos está vacío";
+            }else{
+                if(res==true){
+                    mensaje.innerHTML="El formato del correo es válido";
+                }else{
+                    mensaje.innerHTML="El formato del correo es incorrecto";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

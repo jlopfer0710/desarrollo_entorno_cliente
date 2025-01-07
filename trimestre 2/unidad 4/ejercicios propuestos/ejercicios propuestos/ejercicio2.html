@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <!--2.Crea una página web con dos campos de texto (nobre y apellidos) y un botón que valide que ambos contienen información -->
+    <input type="text" name="" id="nombre" placeholder="Nombre">
+    <input type="password" name="" id="apellidos" placeholder="Apellidos">
+    <button onclick="validar()">Validar</button>
+    <div id="mensaje"></div>
+    <script>
+        function validar(){
+            var nombre=document.getElementById("nombre").value;
+            var apellidos=document.getElementById("apellidos").value;
+            var mensaje=document.getElementById("mensaje");
+            if(nombre=="" &&apellidos==""){
+                mensaje.innerHTML="Ambos campos están vacíos"
+            }else if(nombre!="" && apellidos==""){
+                mensaje.innerHTML="El campo apellidos está vacío";
+            }else if(nombre=="" &&apellidos!=""){
+                mensaje.innerHTML="El campo nombre está vacío"
+            }else{
+                mensaje.innerHTML="Ambos campos son válidos";
+            }
+        }
+    </script>
+</body>
+</html>
