@@ -21,13 +21,23 @@
             height: 30px;
             width: 200px;
         }
+        div{
+            margin-bottom: 10px;
+            font-size: 40px;
+            width: 800px;
+        }
+    #mensaje {
+        margin-bottom: 15px;
+    }
     </style>
 </head>
 <body>
     <script src="script.js"></script>
     <center>
         <h1>Formulario de Acoso</h1>
-        <form action="" id="form" onsubmit="enviar(event)">
+        <h1>Resultado:</h1>
+        <div id="mensaje"></div>
+        <form action="" id="form" onsubmit="enviar(event)" action="http://www.google.es" method="get">
             <ol>
                 <li>
                     <p><strong>1.</strong> ¿Te sientes intimidado o acosado por otros compañeros en la escuela?</p>
