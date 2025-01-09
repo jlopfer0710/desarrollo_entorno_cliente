@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario acoso</title>
+    <style>
+        ol{
+            list-style-type: disc;
+        }
+        form{
+            border: 2px solid black;
+            width: 800px;
+            height: 1280px;
+        }
+        form ol{
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        button{
+            height: 30px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <script src="script.js"></script>
+    <center>
+        <h1>Formulario de Acoso</h1>
+        <form action="" id="form" onsubmit="enviar(event)">
+            <ol>
+                <li>
+                    <p><strong>1.</strong> ¿Te sientes intimidado o acosado por otros compañeros en la escuela?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="1" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="1" id=""  value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>2.</strong> ¿Te han hecho comentarios crueles o hirientes sobre tu aspecto, comportamiento o personalidad?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="2" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="2" id=""  value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>3.</strong> ¿Algún compañero te ha excluido o evitado de manera repetida de actividades escolares o sociales?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="3" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="3" id=""  value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>4.</strong> ¿Te han amenazado o intimidado físicamente (por ejemplo, empujones, golpes)?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="4" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="4" id="" value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>5.</strong> ¿Sientes miedo de ir a la escuela debido a la posibilidad de ser acosado?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="5" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="5" id="" value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>6.</strong> ¿Te han enviado mensajes o publicaciones ofensivas a través de redes sociales o mensajes de texto?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="6" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="6" id="" value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>7.</strong> ¿Has intentado hablar con un profesor o adulto sobre lo que estás viviendo y no han hecho nada al respecto?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="7" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="7" id="" value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>8.</strong> ¿Te han robado o destruido tus pertenencias en la escuela de forma recurrente?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="8" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="8" id="" value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>9.</strong> ¿Sientes que no tienes apoyo de tus compañeros o adultos en la escuela para resolver el problema?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="9" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="9" id="" value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <hr>
+            <ol>
+                <li>
+                    <p><strong>10.</strong> ¿Te ha afectado emocionalmente o psicológicamente el trato recibido por parte de tus compañeros?</p>
+                    <ol>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="10" id="" value="1"> Sí.
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="10" id="" value="0"> No.
+                            </label>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <br>
+            <button type="submit" id="button">Enviar</button>
+        </form>
+    </center>
+</body>
+</html>
