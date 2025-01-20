@@ -21,16 +21,29 @@ function validarNombreApellidos() {
     let valido = true;
     let valor_nombre = nombre.value.trim(); 
     let valor_apellidos = apellidos.value.trim();
-    
+    let regex_nombre=/^[a-zA-Z]+$/; // Patrón para que un nombre sea válido
+    let regex_apellidos = /^[a-zA-Z]+(?: [a-zA-Z]+)?$/; //Permite introducir uno o dos apellidos
 
     if (valor_nombre === "") {
         errores.innerHTML += "El campo NOMBRE no puede estar vacío.<br>";
+        nombre.focus();  // Pone el foco en el primer error
+        valido = false;
+    } 
+    if(!regex_nombre.test(valor_nombre)){
+        errores.innerHTML+="Formato de nombre incorrecto";
         nombre.focus();  // Pone el foco en el primer error
         valido = false;
     }
 
     if (valor_apellidos === "") {
         errores.innerHTML += "El campo APELLIDOS no puede estar vacío.<br>";
+        if (valor_nombre !== "") {
+            apellidos.focus();  // Si el nombre está completo, el foco va a apellidos
+        }
+        valido = false;
+    }
+    if(!regex_apellidos.test(valor_apellidos)){
+        errores.innerHTML += "Formato de apellidos incorrectos.<br>";
         if (valor_nombre !== "") {
             apellidos.focus();  // Si el nombre está completo, el foco va a apellidos
         }
