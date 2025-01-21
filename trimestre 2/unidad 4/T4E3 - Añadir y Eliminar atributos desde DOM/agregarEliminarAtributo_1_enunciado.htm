@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Página con Javascript</title>
+   <script>
+      let nodoImagen;
+
+      function crearNodo() {
+         nodoImagen = document.getElementById("imagen");
+      }
+
+      function agregar() {
+         let titulo = prompt("Elije el título de la imagen");
+         nodoImagen.setAttribute("title", `${titulo}`);
+      }
+
+      function eliminar() {
+
+         if (nodoImagen.hasAttribute("title")) {
+            nodoImagen.removeAttribute("title");
+            document.getElementById("mostrar").innerHTML = "Título de la imagen: ";
+            alert("El atributo 'title' ha sido eliminado.");
+         } else {
+            alert("El atributo 'title' no existe o ya ha sido eliminado.");
+         }
+      }
+
+
+      function mostrarDescripcion() {
+         let titulo = nodoImagen.getAttribute("title");
+         if (titulo) {
+            document.getElementById("mostrar").innerHTML = "Título de la imagen: " + titulo;
+         }
+      }
+
+      function ocultarDescripcion() {
+         document.getElementById("mostrar").innerHTML = "Título de la imagen: ";
+      }
+   </script>
+</head>
+
+<body onLoad="crearNodo();">
+   <img id="imagen" src="iceberg.jpg" onmouseover="mostrarDescripcion();" onmouseout="ocultarDescripcion();"
+      alt="Imagen de un iceberg">
+   <br>
+   <form>
+      <input type="button" value="Agregar 'title' a la imagen" onClick="agregar();">
+      <br>
+      <input type="button" value="Borrar 'title' de la imagen" onClick="eliminar();">
+      <p id="mostrar">Título de la imagen: </p>
+   </form>
+</body>
+
+</html>
