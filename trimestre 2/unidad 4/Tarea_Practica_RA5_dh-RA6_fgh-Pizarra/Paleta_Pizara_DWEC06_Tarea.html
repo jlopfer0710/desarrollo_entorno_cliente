@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DWEC06 - SOLUCION TAREA</title>
+<link type="text/css" rel="stylesheet" href="Estilos_DWEC06_Tarea.css" />
+<script type="text/javascript" src="pizarra.js"></script>
+</head>
+<body>
+<center>
+  <p>TABLERO DE DIBUJO EN JAVASCRIPT</p>
+<table width="500" border="1" id="paleta" summary="Tabla de selección de colores">
+  <caption>
+    Haga CLICK en un color para comenzar a pintar
+  </caption>
+  <tr id="colores"><td class="color1" data-color="Amarillo"></td><td class="color2" data-color="Verde"></td><td class="color3 " data-color="Negro"></td><td class="color4" data-color="Rojo"></td><td class="color5" data-color="Azul"></td><td class="color6 " data-color="Blanco"></td></tr>
+  <tr><td colspan="6" id="pincel">Pincel desactivado</td></tr>
+</table>
+<p>Vuelve a hacer CLICK en el color seleccionado para DESACTIVAR el pincel</p>
+<div id="zonadibujo">
+  <table class="tablerodibujo" border="5"></table>
+</div><br><br>
+<button id="limpiar">Limpiar</button>
+</center>
+</body>
+</html>
