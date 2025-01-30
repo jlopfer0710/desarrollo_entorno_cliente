@@ -46,8 +46,9 @@
 .seleccionado{
 	border: medium solid #939;
 }
-#limpiar{
+button{
 	width: 150px;
 	height: 30px;
 	font-size: 20px;
+	margin-left: 10px;
 }
